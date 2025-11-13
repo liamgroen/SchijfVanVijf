@@ -1,0 +1,109 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+build/
+[Bb]uild[Ll]og.*
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.csproj.user
+*.pidb
+*.svclog
+*.pdb
+*.mdb
+
+# VS Code settings
+.vscode/
+
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nuget.props
+*.nuget.targets
+*.snupkg
+*.nupkg
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+Icon?
+.AppleDouble
+.LSOverride
+
+# macOS-specific build caches
+*.dSYM/
+*.xcworkspace/
+*.xcuserdata/
+*.xcuserstate
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# Windows specific
+*.dbmdl
+*.bak
+*.lnk
+
+# JetBrains / Rider
+.idea/
+*.sln.iml
+
+# Maui-specific build folders
+Platforms/**/bin/
+Platforms/**/obj/
+**/Resources/Raw/*
+!**/Resources/Raw/.keep
+
+# MAUI generated intermediate assets
+*.aab
+*.apk
+*.apks
+*.ipa
+*.app/
+*.xcarchive/
+*.xcresult/
+
+# NuGet Packages
+*.nupkg
+*.nuspec
+packages/
+.nuget/
+**/packages/*
+
+# Configuration files generated locally
+appsettings.Development.json
+appsettings.Local.json
+launchSettings.json
+
+# Temporary test data or cache
+TestResults/
+*.coverage
+*.coveragexml
+*.opencover.xml
+*.gcov
+*.gcda
+*.gcno
+
+# VS for Mac specific
+*.pidb
+*.userprefs
+
+# Local .NET tools
+.dotnet-tools.json
+
+# Maui .NET HotReload
+*.hotreload.json
