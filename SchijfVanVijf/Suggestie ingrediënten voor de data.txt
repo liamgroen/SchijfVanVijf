@@ -1,0 +1,29 @@
+Suggestie ingrediënten voor de database: (vul/pas alsjeblieft aan :))
+
+Groenten/Fruit:
+- Ui
+- Prei
+- Champignon
+- Broccoli
+- Bloemkool
+- Andijvie
+- Zuurkool
+- Boerenkool
+- Wortel/Peen
+- Bosui/Lenteui
+- Paprika
+- Aardappel
+
+Vlees/Vis/Vegetarisch
+- Kipfilet
+- Gehakt
+- Speklap
+- Biefstuk
+- Zalmfilet
+- Tonijn
+- Kabbeljauwfilet
+- Witvis
+- Makreelfilet
+- Tofu
+- Falafel
+- Tempeh
