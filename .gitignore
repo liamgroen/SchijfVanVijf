@@ -17,7 +17,7 @@ build/
 
 # VS Code settings
 .vscode/
-
+.vs/
 
 # .NET
 project.lock.json
