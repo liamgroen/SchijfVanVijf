@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchijfVanVijf
 {
-    class Ingredients
+    public class Ingredients
     {
         List<Allergies> allergy= new List<Allergies>();
        
