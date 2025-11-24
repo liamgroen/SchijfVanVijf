@@ -8,8 +8,6 @@ namespace SchijfVanVijf
 {
     class Ingredients
     {
-        List<Allergies> allergy= new List<Allergies>();
-       
-
+        List<Allergies> allergy = new List<Allergies>();
     }
 }
