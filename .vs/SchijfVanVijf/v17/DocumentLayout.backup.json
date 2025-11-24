@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|c:\\users\\joche\\documents\\github\\introductie-project-groep-5\\schijfvanvijf\\localdbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|solutionrelative:schijfvanvijf\\localdbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|c:\\users\\joche\\documents\\github\\introductie-project-groep-5\\schijfvanvijf\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|solutionrelative:schijfvanvijf\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|c:\\users\\joche\\documents\\github\\introductie-project-groep-5\\schijfvanvijf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E470A6BA-644E-4A09-BEA7-F9B754982D23}|SchijfVanVijf\\SchijfVanVijf.csproj|solutionrelative:schijfvanvijf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +22,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocalDbService.cs",
+              "DocumentMoniker": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\LocalDbService.cs",
+              "RelativeDocumentMoniker": "SchijfVanVijf\\LocalDbService.cs",
+              "ToolTip": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\LocalDbService.cs*",
+              "RelativeToolTip": "SchijfVanVijf\\LocalDbService.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T11:49:59.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\App.xaml.cs",
+              "RelativeDocumentMoniker": "SchijfVanVijf\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\App.xaml.cs*",
+              "RelativeToolTip": "SchijfVanVijf\\App.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T11:45:09.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "SchijfVanVijf\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\joche\\Documents\\GitHub\\introductie-project-groep-5\\SchijfVanVijf\\MauiProgram.cs*",
+              "RelativeToolTip": "SchijfVanVijf\\MauiProgram.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T11:43:01.745Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"

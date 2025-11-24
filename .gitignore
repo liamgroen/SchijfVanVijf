@@ -87,7 +87,7 @@ packages/
 # Configuration files generated locally
 appsettings.Development.json
 appsettings.Local.json
-launchSettings.json
+# launchSettings.json
 
 # Temporary test data or cache
 TestResults/
