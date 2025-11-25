@@ -1,50 +1,121 @@
+using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using SchijfVanVijf.Data;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using SchijfVanVijf.Models;
 
 namespace SchijfVanVijf;
 
-public partial class MainPageViewModel : ObservableObject
+public class MainPageViewModel : INotifyPropertyChanged
 {
-    private readonly Database _db;
+    public event PropertyChangedEventHandler PropertyChanged;
     
-    public ObservableCollection<string> ResultLabels { get; } =
-        new ObservableCollection<string>();
+    private readonly Database _database;
     
-    [ObservableProperty]
-    private bool resultsVisible;
+    public ObservableCollection<string> RecipeNames { get; } = new();
+    
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set
+        {
+            _isLoading = value;
+            OnPropertyChanged(nameof(IsLoading));
+            OnPropertyChanged(nameof(IsNotLoading));
+        }
+    }
+    
+    public bool IsNotLoading => !IsLoading;
+    
+    private bool _hasResults;
+    public bool HasResults
+    {
+        get => _hasResults;
+        set
+        {
+            _hasResults = value;
+            OnPropertyChanged(nameof(HasResults));
+        }
+    }
+    
+    private string _statusMessage;
+    public string StatusMessage
+    {
+        get => _statusMessage;
+        set
+        {
+            _statusMessage = value;
+            OnPropertyChanged(nameof(StatusMessage));
+        }
+    }
+    
+    public ICommand SearchCommand { get; }
     
     public MainPageViewModel()
     {
-        _db = new Database();
+        _database = new Database();
+        SearchCommand = new Command(OnSearchRecipes);
+        StatusMessage = "Press the button to search for recipes";
     }
     
-    [RelayCommand]
-    private async Task SearchAsync()
+    private async void OnSearchRecipes()
     {
         try
         {
-            await LoadResultsAsync();
+            IsLoading = true;
+            StatusMessage = "Searching...";
+            RecipeNames.Clear();
+            HasResults = false;
+            
+            // Mock ingredient IDs 
+            var selectedIngredientIds = new List<int> { 1 };
+            
+            var recipes = await _database.GetRecipesContainingAnyAsync(selectedIngredientIds);
+            
+            // Update UI
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                foreach (var recipe in recipes)
+                {
+                    RecipeNames.Add(recipe.Name);
+                }
+                
+                if (RecipeNames.Count > 0)
+                {
+                    HasResults = true;
+                    StatusMessage = $"Found {RecipeNames.Count} recipe(s)";
+                }
+                else
+                {
+                    StatusMessage = "No recipes found";
+                }
+            });
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Error in LoadResultsAsync: {ex}");
-            await Application.Current.MainPage.DisplayAlert("Error", 
-                $"An error occurred: {ex.Message}", "OK");
+            System.Diagnostics.Debug.WriteLine($"Error searching recipes: {ex}");
+            StatusMessage = $"Error: {ex.Message}";
+            
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                if (Application.Current?.MainPage != null)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error", 
+                        $"Failed to search recipes: {ex.Message}", 
+                        "OK");
+                }
+            });
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
     
-    private async Task LoadResultsAsync()
+    protected void OnPropertyChanged(string propertyName)
     {
-        ResultLabels.Clear();
-        var selectedIngredients = new List<int> { 1 };
-        
-        for (int i = 0; i < 10; i++)
-        {
-            ResultLabels.Add($"Recipe {i + 1}");
-        }
-        
-        ResultsVisible = true;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
