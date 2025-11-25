@@ -1,0 +1,10 @@
+stages:
+  - logstage
+
+generate_git_log:
+  stage: logstage
+  script:
+    - git log --graph > git-history.txt
+  artifacts:
+    paths:
+      - git-history.txt
