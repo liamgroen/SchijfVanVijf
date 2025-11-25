@@ -2,10 +2,10 @@
 
 public partial class App : Application
 {
-	public App(MainPage mainPage)
+	public App()
 	{
 		InitializeComponent();
 
-		MainPage = mainPage; // Use the injected MainPage
-    }
+		MainPage = new AppShell();
+	}
 }

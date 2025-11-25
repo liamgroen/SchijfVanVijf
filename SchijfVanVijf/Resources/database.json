@@ -1,9 +1,0 @@
-{
-  "id": [ "unique_number" ],
-  "title": "[Dutch Title]",
-  "category": "[Category]",
-  "prep_time": "[e.g., 15 min]",
-  "tags": [ "Snel", "Goedkoop", "Vegetarisch" ],
-  "ingredients": [ "item1", "item2", "item3" ],
-  "instructions": "Stap 1: ... Stap 2: ..."
-}
