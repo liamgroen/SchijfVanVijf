@@ -1,13 +1,16 @@
 using SQLite;
+using System.Linq;
 using SchijfVanVijf.Models;
 
 namespace SchijfVanVijf.Data;
 
+
 public class Database
 {
-    SQLiteAsyncConnection database;
+    private SQLiteAsyncConnection database;
+    private DatabaseSeeder seeder;
 
-    async Task Init()
+    private async Task Init()
     {
         if (database is not null)
         {
@@ -27,7 +30,7 @@ public class Database
         await database.CreateTableAsync<RecipeIngredient>();
     }
 
-    private async SeedDatabaseAsync()
+    private async Task SeedDatabaseAsync()
     {
         seeder = new DatabaseSeeder(database);
         await seeder.SeedAsync();
@@ -36,7 +39,7 @@ public class Database
     ///=========================
     /// Ingredient CRUD 
     ///=========================
-        public async Task<Ingredient> GetIngredientAsync(int Id)
+    public async Task<Ingredient> GetIngredientAsync(int Id)
     {
         await Init();
         return await database.Table<Ingredient>()
@@ -48,10 +51,52 @@ public class Database
     ///=========================
     /// Recipe CRUD 
     ///=========================
+    public async Task<Recipe> GetRecipeAsync(int Id)
+    {
+        await Init();
+        return await database.Table<Recipe>()
+            .Where(i => i.Id == Id)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<List<Recipe>> GetRecipeListAsync(List<int> Ids)
+    {
+        if (Ids == null || Ids.Count == 0)
+        {
+            return new List<Recipe>();  
+        }
+
+        await Init();
+        return await database.Table<Recipe>()
+            .Where(i => Ids.Contains(i.Id))
+            .ToListAsync();
+    }
+
     
     //TODO:
     ///=========================
     /// RecipeIngredients CRUD 
     ///=========================
     
+
+    // ============================================
+    // RECIPE SEARCH / FILTER
+    // ============================================
+    public async Task<List<Recipe>> GetRecipesContainingAnyAsync(List<int> ingredientIds)
+    {
+        await Init();
+
+        if (ingredientIds == null || ingredientIds.Count == 0)
+            return new List<Recipe>();
+
+        var recipeIds = (await database.Table<RecipeIngredient>()
+            .Where(ri => ingredientIds.Contains(ri.IngredientId))
+            .ToListAsync())
+            .Select(ri => ri.RecipeId)
+            .Distinct()
+            .ToList();
+
+        return await GetRecipeListAsync(recipeIds);
+    }
+
 }
