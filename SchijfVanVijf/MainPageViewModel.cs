@@ -8,7 +8,7 @@ namespace SchijfVanVijf;
 
 public class MainPageViewModel : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
     
     private readonly Database _database;
     
