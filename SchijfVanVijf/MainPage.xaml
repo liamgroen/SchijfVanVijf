@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SchijfVanVijf.MainPage"
              Title="Recipe Search">
-    
+
     <Grid Padding="20" RowSpacing="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <!-- Search Button -->
         <Button Grid.Row="0"
                 Text="Search Recipes"
@@ -20,14 +20,13 @@
                 FontSize="18"
                 BackgroundColor="{StaticResource Primary}"
                 TextColor="White" />
-        
         <!-- Status Message -->
         <Label Grid.Row="1"
                Text="{Binding StatusMessage}"
                FontSize="16"
                HorizontalOptions="Center"
                TextColor="{StaticResource Secondary}" />
-        
+
         <!-- Loading Indicator -->
         <ActivityIndicator Grid.Row="2"
                           IsRunning="{Binding IsLoading}"
@@ -35,7 +34,7 @@
                           Color="{StaticResource Primary}"
                           VerticalOptions="Start"
                           Margin="0,20,0,0" />
-        
+
         <!-- Results List -->
         <ScrollView Grid.Row="2"
                     IsVisible="{Binding HasResults}">
@@ -44,7 +43,7 @@
                        FontSize="20"
                        FontAttributes="Bold"
                        Margin="0,0,0,10" />
-                
+
                 <CollectionView ItemsSource="{Binding RecipeNames}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -62,6 +61,61 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,*,*,*"
+              VerticalOptions="End"
+              Margin="10,0,10,20">
+
+            <Button Grid.Column="0"
+                    Text="Home"
+                    HeightRequest="50" WidthRequest="100" CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    >
+                <Button.ImageSource>
+                <FontImageSource FontFamily="OpenSansRegualar" Glyph="Empty"/>
+                </Button.ImageSource>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Text="Search"
+                    HeightRequest="50" WidthRequest="100" CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    >
+                <Button.ImageSource>
+                <FontImageSource FontFamily="Empty" Glyph="Empty"/>
+                </Button.ImageSource>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Text="Save"
+                    HeightRequest="50" WidthRequest="100" CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    >
+                <Button.ImageSource>
+                <FontImageSource FontFamily="Empty" Glyph="Empty"/>
+                </Button.ImageSource>
+                </Button>
+<!--Profile button Icon centering test, still have to add icons to resources and IcontToFont in ConfigFonts-->
+            <Button Grid.Column="3"
+                    Text="Profile"
+                    HeightRequest="50" WidthRequest="100" CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    
+                    >
+                <Button.ImageSource>
+                <FontImageSource FontFamily="Empty" Glyph="Empty" />
+                </Button.ImageSource>
+            </Button>
+
+        </Grid>
     </Grid>
-    
 </ContentPage>
