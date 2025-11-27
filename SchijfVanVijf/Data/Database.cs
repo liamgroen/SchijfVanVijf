@@ -4,9 +4,9 @@ using SchijfVanVijf.Models;
 
 namespace SchijfVanVijf.Data;
 
-
 public class Database
 {
+    //create database object used for interacting with the SQLite DB
     private SQLiteAsyncConnection database;
     private DatabaseSeeder seeder;
 
@@ -23,13 +23,14 @@ public class Database
         
     }
 
+    //Make sure that tables exist>
     private async Task CreateTablesAsync()
     {
         await database.CreateTableAsync<Ingredient>();
         await database.CreateTableAsync<Recipe>();
         await database.CreateTableAsync<RecipeIngredient>();
     }
-
+    
     private async Task SeedDatabaseAsync()
     {
         seeder = new DatabaseSeeder(database);
