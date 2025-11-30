@@ -65,51 +65,7 @@
             </CollectionView>
         </Grid>
 <!-- bottom UI buttons with icon-->
-        <Grid 
-            Grid.Row="2"
-            ColumnDefinitions="*,*,*,*,*"
-            VerticalOptions="End"
-            Margin="10,0,10,10">
-
-           <Button Grid.Column="0"
-            ImageSource="home_icon.png"
-            HeightRequest="25" WidthRequest="25" CornerRadius="25"
-            BackgroundColor="{StaticResource Primary}"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
-
-           <Button Grid.Column="1"
-            ImageSource="search_icon.png"
-            HeightRequest="25" WidthRequest="25" CornerRadius="25"
-            BackgroundColor="{StaticResource Primary}"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
-            
-           <Button 
-            Grid.Column="2"
-            ImageSource="add_icon.png"
-            HeightRequest="65" WidthRequest="65" CornerRadius="25"
-            BackgroundColor="DarkGreen"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
-
-            <Button Grid.Column="3"
-            ImageSource="recipe_icon.png"
-            HeightRequest="25" WidthRequest="25" CornerRadius="25"
-            BackgroundColor="{StaticResource Primary}"
-            HorizontalOptions="Center" 
-            VerticalOptions="Center" />
-
-           <Button Grid.Column="4"
-            ImageSource="profile_icon.png"
-            HeightRequest="25" WidthRequest="25" CornerRadius="25"
-            BackgroundColor="{StaticResource Primary}"
-            HorizontalOptions="Center" 
-            VerticalOptions="Center" />
-           
-
-        </Grid>
-
+       
             
     </Grid>
 </ContentPage>
