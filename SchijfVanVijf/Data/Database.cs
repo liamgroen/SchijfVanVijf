@@ -19,8 +19,14 @@ public class Database
 
         database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         await CreateTablesAsync();
-        await SeedDatabaseAsync();
         
+        // DEBUG: laat zien welke database wordt geopend
+        Console.WriteLine("DEBUG - Using database at: " + Constants.DatabasePath);
+
+        // Seed database (voegt alleen toe wat nog ontbreekt, overschrijft niets)
+        await SeedDatabaseAsync();
+
+
     }
 
     //Make sure that tables exist>
