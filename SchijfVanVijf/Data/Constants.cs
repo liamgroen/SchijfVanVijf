@@ -15,7 +15,6 @@ public static class Constants
         SQLite.SQLiteOpenFlags.SharedCache;
 
     public static string DatabasePath =>
-        Path.Combine(Environment.CurrentDirectory, "Data", DatabaseFilename);
-
+        Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
 
 }
