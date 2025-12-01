@@ -4,14 +4,18 @@ namespace SchijfVanVijf.Data;
 
 public static class Constants
 {
-    public const string DatabaseFilename = "Database.db";
+    public const string DatabaseFilename = "SchijfVanVijf.db3";
 
     public const SQLite.SQLiteOpenFlags Flags =
+        // open the database in read/write mode
         SQLite.SQLiteOpenFlags.ReadWrite |
+        // create the database if it doesn't exist
         SQLite.SQLiteOpenFlags.Create |
+        // enable multi-threaded database access
         SQLite.SQLiteOpenFlags.SharedCache;
 
-    // Gebruik databasebestand uit de repo (Data/ folder)
     public static string DatabasePath =>
-        Path.Combine(FileSystem.CurrentDirectory, "Data", DatabaseFilename);
+        Path.Combine(Environment.CurrentDirectory, "Data", DatabaseFilename);
+
+
 }
