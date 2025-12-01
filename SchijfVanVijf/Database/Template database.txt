@@ -1,0 +1,48 @@
+-- ============================================
+-- TEMPLATE: Ingrediënt toevoegen
+-- ============================================
+INSERT INTO Ingredients (Name)
+VALUES ('<Naam van ingrediënt>');
+
+-- ============================================
+-- TEMPLATE: Recept toevoegen
+-- ============================================
+INSERT INTO Recipes (
+    Title,
+    Discription,
+    Instructions,
+    Prepartation_Time,
+    Cooking_Time,
+    Servings
+) VALUES (
+    '<Titel van recept>',
+    '<Beschrijving van recept>',
+    '<Instructies>',
+    <Voorbereidingstijd in minuten>,
+    <Kooktijd in minuten>,
+    <Aantal porties>
+);
+
+-- ============================================
+-- TEMPLATE: Ingrediënt koppelen aan recept
+-- ============================================
+INSERT INTO Recipe_Ingredient (
+    Recipe_ID,
+    Ingredient_ID,
+    amount
+) VALUES (
+    <Recipe_ID>,
+    <Ingredient_ID>,
+    <Hoeveelheid>
+);
+
+-- Automatisch koppelen direct na recept
+INSERT INTO Recipe_Ingredient (Recipe_ID, Ingredient_ID, amount)
+VALUES (LAST_INSERT_ID(), <Ingredient_ID>, <Hoeveelheid>);
+
+-- ============================================
+-- TEMPLATE: Database leegmaken (structuur behouden)
+-- ============================================
+DELETE FROM Recipe_Ingredient;
+DELETE FROM Recipes;
+DELETE FROM Ingredients;
