@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SchijfVanVijf.Models"
+             x:Class="SchijfVanVijf.Views.FilterMainPage"
+             Title="FilterMainPage">
+
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Ingredient}">
+                <model:Ingredient Name="Onion"/>
+                <model:Ingredient Name="Broccoli"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Ingredient">
+                <HorizontalStackLayout>
+                    <Label Text="{Binding Name}"/>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+</ContentPage>

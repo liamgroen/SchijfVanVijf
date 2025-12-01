@@ -3,13 +3,21 @@
     x:Class="SchijfVanVijf.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:SchijfVanVijf"
+    xmlns:local="clr-namespace:SchijfVanVijf.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="SchijfVanVijf">
-
-    <ShellContent
+    
+    <TabBar>
+        <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
+        Icon="home_icon.png"
         Route="MainPage" />
-
+        
+        <!-- Should eventually be connected to the recipe page but for testing purposes is now reachable through the main page-->
+        <ShellContent
+        Title="Filter"
+        ContentTemplate="{DataTemplate local:FilterMainPage}"
+        Icon="filter_list_icon.png"/>
+    </TabBar>
 </Shell>
