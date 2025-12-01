@@ -3,28 +3,31 @@
     x:Class="SchijfVanVijf.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:SchijfVanVijf"
+    xmlns:local="clr-namespace:SchijfVanVijf.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
         <Tab Title="Home" Icon="home_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
-
+<!--
         <Tab Title="Add" Icon="add_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
-        </Tab>
+        </Tab> -->
 
         <Tab Title="Search" Icon="search_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:RecipePage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" />
         </Tab>
-
+<!--
         <Tab Title="Recipes" Icon="bookmark_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
-        </Tab>
-
+        </Tab> -->
+<!--
         <Tab Title="Profile" Icon="profile_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab> -->
+        <Tab Title="Filter" Icon="filter_list_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:FilterMainPage}" />
         </Tab>
     </TabBar>
 
