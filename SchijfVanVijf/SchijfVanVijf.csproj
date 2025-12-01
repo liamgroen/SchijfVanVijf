@@ -56,6 +56,7 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
@@ -66,7 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\FilterMainPage.xaml">
+	  <MauiXaml Update="RecipePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

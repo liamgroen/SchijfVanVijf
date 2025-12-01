@@ -20,7 +20,8 @@ public class Database
         database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         await CreateTablesAsync();
         await SeedDatabaseAsync();
-        
+
+
     }
 
     //Make sure that tables exist>
