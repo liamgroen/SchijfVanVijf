@@ -1,0 +1,120 @@
+Groenten & Fruit:
+Ui
+Prei
+Champignon
+Broccoli
+Bloemkool
+Andijvie
+Zuurkool
+Boerenkool
+Wortel
+Bosui
+Paprika
+Aardappel
+Tomaat
+Komkommer
+Courgette
+Aubergine
+Knoflook
+Spinazie
+Rode kool
+Witte kool
+Chinese kool
+Rode ui
+Spruitjes
+Maïs
+Doperwten
+Sperziebonen
+Venkel
+Koolraap
+Pastinaak
+Koolrabi
+Radijs
+Avocado
+Citroen
+Limoen
+Sinaasappel
+Banaan
+Appel
+Peer
+Ananas
+Mango
+
+Vlees, Vis & Vegetarisch:
+Kipfilet
+Gehakt
+Speklap
+Biefstuk
+Zalmfilet
+Tonijn
+Kabeljauwfilet
+Witvis
+Makreelfilet
+Tofu
+Falafel
+Tempeh
+Kalkoenfilet
+Varkenshaas
+Bacon
+Hamblokjes
+Lamskotelet
+Runderreepjes
+Kippengehakt
+Kippendij
+Garnalen
+Mosselen
+Scholfilet
+Tilapia
+Pangasiusfilet
+Seitan
+Vegaburger
+Vegetarisch gehakt
+Vegaworst
+Kaasburger
+Quorn stukjes
+Haring
+Oesters
+Kreeft
+Krab
+
+Zuivel & Eieren:
+Melk
+Room
+Kwark
+Yoghurt
+Griekse yoghurt
+Slagroom
+Roomboter
+Kaas
+Mozzarella
+Eieren
+
+Granen, Pasta & Rijst:
+Spaghetti
+Penne
+Rijst
+Couscous
+Bulgur
+Quinoa
+Noodles
+Havermout
+Tortilla wraps
+Lasagnebladen
+
+Kruiden, Noten & Overigen:
+Peterselie
+Bieslook
+Basilicum
+Oregano
+Tijm
+Rozemarijn
+Koriander
+Walnoten
+Cashewnoten
+Amandelen
+Pijnboompitten
+Olijven
+Kappertjes
+Shiitake
+Oesterzwam
+Gember
