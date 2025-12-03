@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SchijfVanVijf.Views.SearchPage"
+             xmlns:model ="clr-namespace:SchijfVanVijf.Models"
              Title="Search recipes"
              BackgroundColor="White">
 
@@ -9,6 +10,19 @@
 
         <ScrollView Grid.Row="0">
             <VerticalStackLayout Spacing="0">
+                <Button ImageSource="filter_list_icon.png"
+                    BackgroundColor="Green"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Padding="12"
+                    HorizontalOptions="End"
+                    Margin="0,10,0,20"
+                    Clicked="GoToFilterMainPage_Clicked">
+                    <Button.Shadow>
+                        <Shadow Brush="Black" Opacity="0.3" Offset="2,2" Radius="5"/>
+                    </Button.Shadow>
+                </Button>
 
                 <VerticalStackLayout BindableLayout.ItemsSource="{Binding IngredientList}">
                     <BindableLayout.ItemTemplate>

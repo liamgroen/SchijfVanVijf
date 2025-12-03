@@ -2,23 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:SchijfVanVijf.Models"
+             xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
              x:Class="SchijfVanVijf.Views.FilterMainPage"
              Title="FilterMainPage">
 
-    <CollectionView>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type model:Ingredient}">
-                <model:Ingredient Name="Onion"/>
-                <model:Ingredient Name="Broccoli"/>
-            </x:Array>
-        </CollectionView.ItemsSource>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:Ingredient">
-                <HorizontalStackLayout>
-                    <Label Text="{Binding Name}"/>
-                </HorizontalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-    
+    <!-- TODO: Update categories and resize buttons to fit-->
+    <Grid RowDefinitions="*, Auto"
+          BackgroundColor="White">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Button Text="Meat"
+                        Grid.Row="1"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Fish"
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Vegetables"
+                        Grid.Row="3"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Fruit"
+                        Grid.Row="4"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Button Text="OK"
+                Grid.Row="5"
+                TextColor="Black"
+                BorderColor="Black"
+                BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                Padding="20"
+                Margin="100,10"
+                Clicked = "OkButtonClick"/>
+    </Grid>
+
 </ContentPage>

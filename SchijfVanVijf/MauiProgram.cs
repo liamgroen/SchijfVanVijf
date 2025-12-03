@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using SchijfVanVijf.ViewModel;
+using SchijfVanVijf.Views;
 
 namespace SchijfVanVijf;
 
@@ -15,8 +17,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MainPageViewModel>();
+
+		builder.Services.AddTransient<FilterSelectedPage>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

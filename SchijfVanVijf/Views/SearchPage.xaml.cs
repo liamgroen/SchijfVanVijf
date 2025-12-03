@@ -38,4 +38,10 @@ public partial class SearchPage : ContentPage
     {
         DisplayAlert("Search", $"Searching with {IngredientList.Count} ingredients...", "OK");
     }
+
+    private async void GoToFilterMainPage_Clicked(object sender, EventArgs e)
+    {
+        new NavigationPage(new MainPage());
+        await Navigation.PushAsync(page: new FilterMainPage());
+    }
 }

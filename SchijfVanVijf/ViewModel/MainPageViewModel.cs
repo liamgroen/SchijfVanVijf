@@ -2,9 +2,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using SchijfVanVijf.Data;
-using SchijfVanVijf.Models;
 
-namespace SchijfVanVijf;
+namespace SchijfVanVijf.ViewModel;
 
 public class MainPageViewModel : INotifyPropertyChanged
 {
