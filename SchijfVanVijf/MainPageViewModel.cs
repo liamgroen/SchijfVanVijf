@@ -55,6 +55,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public MainPageViewModel()
     {
         _database = new Database();
+        _database.Init().ConfigureAwait(false); //initalizeer de database maar één keer bij opstarten
         SearchCommand = new Command(OnSearchRecipes);
         StatusMessage = "Press the button to search for recipes";
     }
@@ -78,7 +79,7 @@ public class MainPageViewModel : INotifyPropertyChanged
             {
                 foreach (var recipe in recipes)
                 {
-                    RecipeNames.Add(recipe.Name);
+                    RecipeNames.Add(recipe.Title);
                 }
                 
                 if (RecipeNames.Count > 0)
