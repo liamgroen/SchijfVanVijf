@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SchijfVanVijf.Models"
+             xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
+             x:Class="SchijfVanVijf.Views.FilterSelectedPage"
+             Title="{Binding Category}">
+
+    <!-- TODO: Request ingredient of specific category to display-->
+    <Grid BackgroundColor="White"
+          RowDefinitions="*,Auto">
+        <CheckBox x:Name="cb1"
+                  CheckedChanged="OnCheckedChanged"
+                  Grid.Row="0"
+                  Color="Black"/>
+        <Label Text="Onion"
+                   TextColor="Black"
+                   HeightRequest="20"
+               Grid.Row="0"
+               Margin="30"/>
+        <Button Text="OK"
+                Grid.Row="1"
+                TextColor="Black"
+                BackgroundColor="{StaticResource Primary}"
+                Padding="20"
+                Margin="100,10"
+                Clicked = "OkButtonClick"/>
+    </Grid>
+
+</ContentPage>

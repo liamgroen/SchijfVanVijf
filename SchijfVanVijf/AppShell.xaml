@@ -8,7 +8,9 @@
 
     <TabBar>
         <Tab Title="Home" Icon="home_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+            <ShellContent
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage"/>
         </Tab>
 <!--
         <Tab Title="Add" Icon="add_icon.png">
@@ -26,9 +28,6 @@
         <Tab Title="Profile" Icon="profile_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab> -->
-        <Tab Title="Filter" Icon="filter_list_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:FilterMainPage}" />
-        </Tab>
     </TabBar>
 
 </Shell>

@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:SchijfVanVijf.Models"
              xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
-             x:Class="SchijfVanVijf.Views.FilterMainPage"
-             Title="FilterMainPage">
+             x:Class="SchijfVanVijf.Views.RecipeMainPage"
+             Title="RecipeMainPage">
 
     <!-- TODO: Update categories and resize buttons to fit-->
     <Grid RowDefinitions="*, Auto"
           BackgroundColor="White">
         <ScrollView>
             <VerticalStackLayout>
-                <Button Text="Meat"
+                <Button Text="Hamburger"
                         Grid.Row="1"
                         HorizontalOptions="Fill"
                         FontSize="18"
@@ -22,7 +22,7 @@
                         BorderWidth="2"
                         Margin="2"
                         Clicked ="OnButtonClick"/>
-                <Button Text="Fish"
+                <Button Text="Fish and chips"
                         Grid.Row="2"
                         HorizontalOptions="Fill"
                         FontSize="18"
@@ -33,7 +33,7 @@
                         BorderWidth="2"
                         Margin="2"
                         Clicked ="OnButtonClick"/>
-                <Button Text="Vegetables"
+                <Button Text="Tomato soup"
                         Grid.Row="3"
                         HorizontalOptions="Fill"
                         FontSize="18"
@@ -44,7 +44,7 @@
                         BorderWidth="2"
                         Margin="2"
                         Clicked ="OnButtonClick"/>
-                <Button Text="Fruit"
+                <Button Text="Sushi"
                         Grid.Row="4"
                         HorizontalOptions="Fill"
                         FontSize="18"
@@ -57,15 +57,6 @@
                         Clicked ="OnButtonClick"/>
             </VerticalStackLayout>
         </ScrollView>
-        <Button Text="OK"
-                Grid.Row="5"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                BackgroundColor="{StaticResource Primary}"
-                Padding="20"
-                Margin="100,10"
-                Clicked = "OkButtonClick"/>
     </Grid>
 
 </ContentPage>

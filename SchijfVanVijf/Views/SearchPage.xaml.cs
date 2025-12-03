@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace SchijfVanVijf.Views;
 public partial class SearchPage : ContentPage
@@ -34,8 +35,17 @@ public partial class SearchPage : ContentPage
         IngredientList.Add(new IngredientItem { Value = "" });
     }
 
-    private void OnSearchClicked(object sender, EventArgs e)
+    private async void OnSearchClicked(object sender, EventArgs e)
     {
-        DisplayAlert("Search", $"Searching with {IngredientList.Count} ingredients...", "OK");
+        //TODO: Should search database for matching ingredients and hand back a list of ingredients to be shown on the recipe main page
+        //await DisplayAlert("Search", $"Searching with {IngredientList.Count} ingredients...", "OK");
+        new NavigationPage(new MainPage());
+        await Navigation.PushAsync(page: new RecipeMainPage());
+    }
+
+    private async void GoToFilterMainPage_Clicked(object sender, EventArgs e)
+    {
+        new NavigationPage(new MainPage());
+        await Navigation.PushAsync(page: new FilterMainPage());
     }
 }

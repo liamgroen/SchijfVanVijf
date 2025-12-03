@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SchijfVanVijf.Views.MainPage"
+             xmlns:model ="clr-namespace:SchijfVanVijf.Models"
+             xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
              Title="Recipe Search">
 
     <Grid Padding="20" RowSpacing="15">
