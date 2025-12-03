@@ -1,0 +1,59 @@
+===========================
+SQL QUERIES – DIEET & ALLERGIE
+===========================
+
+-- Vegetarisch
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%meat%'
+  AND Tags NOT LIKE '%fish%'
+  AND Tags NOT LIKE '%shellfish%';
+
+-- Vegan
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%meat%'
+  AND Tags NOT LIKE '%fish%'
+  AND Tags NOT LIKE '%shellfish%'
+  AND Tags NOT LIKE '%dairy%'
+  AND Tags NOT LIKE '%egg%';
+
+-- Halal
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%pork%'
+  AND Tags NOT LIKE '%non-halal%';
+
+-- Kosher
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%pork%'
+  AND Tags NOT LIKE '%shellfish%'
+  AND Tags NOT LIKE '%non-kosher%';
+
+-- Gluten-vrij
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%gluten%';
+
+-- Lactose-vrij
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%lactose%'
+  AND Tags NOT LIKE '%dairy%';
+
+-- Notenvrij
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%nuts%';
+
+-- Vis-allergie
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%fish%';
+
+-- Schaaldieren-allergie
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%shellfish%';
+
+-- MEERDERE FILTERS: bv vegan + glutenvrij + notenvrij
+SELECT * FROM Ingredients
+WHERE Tags NOT LIKE '%meat%'
+  AND Tags NOT LIKE '%fish%'
+  AND Tags NOT LIKE '%shellfish%'
+  AND Tags NOT LIKE '%dairy%'
+  AND Tags NOT LIKE '%egg%'
+  AND Tags NOT LIKE '%gluten%'
+  AND Tags NOT LIKE '%nuts%';
