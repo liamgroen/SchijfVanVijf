@@ -8,7 +8,7 @@ public partial class FilterMainPage : ContentPage
 	public FilterMainPage()
 	{
 		InitializeComponent();
-		BindingContext = new ViewModel.FilterMainPageViewModel();
+		//BindingContext = new ViewModel.FilterMainPageViewModel();
     }
 
     private async void OnButtonClick(object sender, EventArgs e)

@@ -16,6 +16,7 @@
         <Label Text="Onion"
                    TextColor="Black"
                    HeightRequest="20"
+               Grid.Row="0"
                Margin="30"/>
         <Button Text="OK"
                 Grid.Row="1"

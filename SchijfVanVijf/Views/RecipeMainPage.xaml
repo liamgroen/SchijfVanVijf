@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SchijfVanVijf.Models"
+             xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
+             x:Class="SchijfVanVijf.Views.RecipeMainPage"
+             Title="RecipeMainPage">
+
+    <!-- TODO: Update categories and resize buttons to fit-->
+    <Grid RowDefinitions="*, Auto"
+          BackgroundColor="White">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Button Text="Hamburger"
+                        Grid.Row="1"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Fish and chips"
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Tomato soup"
+                        Grid.Row="3"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+                <Button Text="Sushi"
+                        Grid.Row="4"
+                        HorizontalOptions="Fill"
+                        FontSize="18"
+                        BackgroundColor="Green"
+                        TextColor="Black"
+                        CornerRadius="0"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        Margin="2"
+                        Clicked ="OnButtonClick"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
