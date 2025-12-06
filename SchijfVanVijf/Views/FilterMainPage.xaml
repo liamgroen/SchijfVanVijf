@@ -8,66 +8,41 @@
 
     <!-- TODO: Update categories and resize buttons to fit-->
     <Grid RowDefinitions="*, Auto"
-          BackgroundColor="White">
-        <ScrollView>
-            <VerticalStackLayout>
-                <!--Creates the layout for the ingredient category buttons and links it to the OnButtonClick event-->
-                <Button Text="Meat"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Fish"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Vegetables"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Fruit"
-                        Grid.Row="4"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
+       BackgroundColor="White">
+        <ScrollView
+            Grid.Row="0">
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding CategoryList}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                         Text="{Binding CategoryName}"
+                         Clicked="OnButtonClick"
+                         HorizontalOptions="Fill"
+                         FontSize="Large"
+                         BackgroundColor="Green"
+                         TextColor="Black"
+                         CornerRadius="5"
+                         BorderColor="Black"
+                         BorderWidth="2"
+                         Margin="10"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
         </ScrollView>
+
         <!--Creates the layout for the OK button and links it to the OkbuttonClick event-->
-        <Button Text="OK"
-                Grid.Row="5"
-                HeightRequest="50"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                BackgroundColor="{StaticResource Primary}"
-                Margin="20,20"
-                Clicked = "OkButtonClick"/>
+        <Button 
+            Grid.Row="1"
+             Text="OK"
+             Clicked="OkButtonClick"
+             HorizontalOptions="Fill"
+             FontSize="Medium"
+             BackgroundColor="{StaticResource Primary}"
+             TextColor="Black"
+             CornerRadius="5"
+             BorderColor="Black"
+             BorderWidth="2"
+             Margin="10"/>
     </Grid>
 
 </ContentPage>
