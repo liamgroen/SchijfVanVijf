@@ -9,4 +9,8 @@ public partial class RecipeSelectedPage : ContentPage
 		Recipe = recipe;
 		BindingContext = this;
 	}
+
+	public async void OnScrollViewScrolled (Object sender, ScrolledEventArgs e)
+	{   
+    }
 }

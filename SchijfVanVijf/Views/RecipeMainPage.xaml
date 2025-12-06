@@ -4,57 +4,30 @@
              xmlns:model="clr-namespace:SchijfVanVijf.Models"
              xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
              x:Class="SchijfVanVijf.Views.RecipeMainPage"
-             Title="RecipeMainPage">
+             Title="Recipes">
 
     <!-- TODO: Update categories and resize buttons to fit-->
+    <!-- Creates the layout for the recipe list-->
+    <!-- Links the recipe buttons to the OnButtonClick event-->
     <Grid RowDefinitions="*, Auto"
           BackgroundColor="White">
         <ScrollView>
-            <VerticalStackLayout>
-                <Button Text="Hamburger"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Fish and chips"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Tomato soup"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
-                <Button Text="Sushi"
-                        Grid.Row="4"
-                        HorizontalOptions="Fill"
-                        FontSize="18"
-                        BackgroundColor="Green"
-                        TextColor="Black"
-                        CornerRadius="0"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Margin="2"
-                        Clicked ="OnButtonClick"/>
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecipeList}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Text="{Binding RecipeName}"
+                            Clicked="OnButtonClick"
+                            HorizontalOptions="Fill"
+                            FontSize="Large"
+                            BackgroundColor="Green"
+                            TextColor="Black"
+                            CornerRadius="5"
+                            BorderColor="Black"
+                            BorderWidth="2"
+                            Margin="10"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

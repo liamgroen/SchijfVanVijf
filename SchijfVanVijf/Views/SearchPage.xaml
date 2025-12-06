@@ -76,6 +76,8 @@
             FontSize="18"
             BackgroundColor="{StaticResource Primary}"
             TextColor="Black"
+            BorderColor="Black"
+            BorderWidth="1"
             CornerRadius="8"
             Clicked="OnSearchClicked"/>
     </Grid>

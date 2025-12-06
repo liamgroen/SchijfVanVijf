@@ -11,6 +11,7 @@
           BackgroundColor="White">
         <ScrollView>
             <VerticalStackLayout>
+                <!--Creates the layout for the ingredient category buttons and links it to the OnButtonClick event-->
                 <Button Text="Meat"
                         Grid.Row="1"
                         HorizontalOptions="Fill"
@@ -57,14 +58,15 @@
                         Clicked ="OnButtonClick"/>
             </VerticalStackLayout>
         </ScrollView>
+        <!--Creates the layout for the OK button and links it to the OkbuttonClick event-->
         <Button Text="OK"
                 Grid.Row="5"
+                HeightRequest="50"
                 TextColor="Black"
                 BorderColor="Black"
                 BorderWidth="1"
                 BackgroundColor="{StaticResource Primary}"
-                Padding="20"
-                Margin="100,10"
+                Margin="20,20"
                 Clicked = "OkButtonClick"/>
     </Grid>
 

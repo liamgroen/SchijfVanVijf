@@ -18,6 +18,7 @@ public partial class FilterSelectedPage : ContentPage
         await Navigation.PopAsync();
     }
 
+    //Checks the bool value of the checkbox and detmines if the corresponding ingredient should be added/removed from the ingredient list
     private async void OnCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         //TODO: Add/remove ingredient to item list

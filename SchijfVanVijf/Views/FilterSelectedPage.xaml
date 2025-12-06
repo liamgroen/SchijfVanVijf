@@ -7,10 +7,12 @@
              Title="{Binding Category}">
 
     <!-- TODO: Request ingredient of specific category to display-->
+    <!-- Creates the layout for the ingredient checklist-->
     <Grid BackgroundColor="White"
           RowDefinitions="*,Auto">
+        <!-- Links the checkboxes to the OnCheckedChanged event-->
         <CheckBox x:Name="cb1"
-                  CheckedChanged="OnCheckedChanged"
+                  CheckedChanged="OnCheckedChanged"  
                   Grid.Row="0"
                   Color="Black"/>
         <Label Text="Onion"
@@ -18,12 +20,15 @@
                    HeightRequest="20"
                Grid.Row="0"
                Margin="30"/>
+        <!-- Links the OKbutton to the OkButtonClick event-->
         <Button Text="OK"
-                Grid.Row="1"
+                Grid.Row="5"
+                HeightRequest="50"
                 TextColor="Black"
+                BorderColor="Black"
+                BorderWidth="1"
                 BackgroundColor="{StaticResource Primary}"
-                Padding="20"
-                Margin="100,10"
+                Margin="20,20"
                 Clicked = "OkButtonClick"/>
     </Grid>
 
