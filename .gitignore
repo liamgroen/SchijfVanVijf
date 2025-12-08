@@ -65,6 +65,7 @@ Icon?
 # Maui-specific build folders
 Platforms/**/bin/
 Platforms/**/obj/
+#**/Resources/Raw/*
 !**/Resources/Raw/.keep
 
 # MAUI generated intermediate assets

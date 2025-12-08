@@ -4,6 +4,6 @@ public class FilterMainPageViewModel
 {
     public FilterMainPageViewModel()
     {
-
+        //TODO: Split view into view and viewmodel
     }
 }
