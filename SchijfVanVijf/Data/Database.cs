@@ -178,6 +178,7 @@ public class Database
             .Where(ri => ri.Category == category)
             .ToListAsync())
             .Select(ri => ri.Name)
+            .Distinct() // added to avoid duplicate entries, but this should be fixed in the database
             .ToList();
 
         return ingredientList;
