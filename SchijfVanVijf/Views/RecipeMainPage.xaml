@@ -18,6 +18,7 @@
                         <Button
                             Text="{Binding Title}"
                             Clicked="OnButtonClick"
+                            CommandParameter="{Binding .}"
                             HorizontalOptions="Center"
                             FontSize="Large"
                             BackgroundColor="Green"

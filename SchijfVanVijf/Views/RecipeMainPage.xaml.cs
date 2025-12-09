@@ -10,8 +10,8 @@ public partial class RecipeMainPage : ContentPage
 
     private readonly Database _database;
     private List<int> ingredientsInHouse;
+   
 
-    
     public RecipeMainPage(List<int> ingredientIds)
 	{
 		InitializeComponent();
@@ -25,7 +25,7 @@ public partial class RecipeMainPage : ContentPage
 
     private async void LoadRecipesAsync()
     {
-        var recipes = await _database.GetRecipesContainingAnyAsync(ingredientsInHouse);
+        List<Recipe> recipes = await _database.GetRecipesContainingAnyAsync(ingredientsInHouse);
         foreach (Recipe recipe in recipes)
         {
             RecipeList.Add(recipe);
@@ -35,11 +35,16 @@ public partial class RecipeMainPage : ContentPage
     //Checks the text of the button that the user has pressed and hands this to the newly created recipe selected page
     private async void OnButtonClick(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        if (button == null) return;
+        if (sender is not Button button)
+        {
+            return;
+        }
 
-        string text = button.Text;
+        if (button.CommandParameter is not Recipe recipe)
+        {
+            return;
+        }
 
-        await Navigation.PushAsync(page: new Views.RecipeSelectedPage(text));
+        await Navigation.PushAsync(page: new Views.RecipeSelectedPage(recipe));
     }
 }

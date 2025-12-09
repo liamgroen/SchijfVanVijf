@@ -42,7 +42,7 @@ public partial class SearchPage : ContentPage
         //await DisplayAlert("Search", $"Searching with {IngredientList.Count} ingredients...", "OK");
 
         List<string> ingredientsInHouse = IngredientList.Select(i => i.Name).ToList();
-        var ingredientIds = await _database.GetIdsForNames(ingredientsInHouse);
+        var ingredientIds = await _database.GetIngredientIdsForNames(ingredientsInHouse);
 
         new NavigationPage(new MainPage());
         await Navigation.PushAsync(page: new RecipeMainPage(ingredientIds));
