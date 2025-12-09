@@ -15,7 +15,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Button
-                         Text="{Binding CategoryName}"
+                         Text="{Binding}"
                          Clicked="OnButtonClick"
                          HorizontalOptions="Fill"
                          FontSize="Large"

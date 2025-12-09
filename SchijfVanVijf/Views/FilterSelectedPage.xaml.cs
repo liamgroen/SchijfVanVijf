@@ -47,7 +47,6 @@ public partial class FilterSelectedPage : ContentPage
         //TODO: Add/remove ingredient to item list
         if (e.Value)
         {
-            await Navigation.PopAsync();
             //ADD INGREDIENT TO LIST
         }
         else; //REMOVE INGREDIENT FROM LIST

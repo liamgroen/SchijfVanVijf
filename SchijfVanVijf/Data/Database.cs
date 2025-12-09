@@ -1,6 +1,7 @@
 using SQLite;
 using System.Linq;
 using SchijfVanVijf.Models;
+using System.ComponentModel;
 
 namespace SchijfVanVijf.Data;
 
@@ -97,6 +98,18 @@ public class Database
         return await _db.Table<Ingredient>() // vraagt ingredi�nten tabel op
             .Where(i => i.Ingredient_Id == Id) // filtert op id
             .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredi�nt terug, of null
+    }
+
+
+    // returns a list of all ingredient categories
+    public async Task<List<string>> GetAllCategories()
+    {
+        await Init();
+        var ingredients =  await _db.Table<Ingredient>().ToListAsync();
+        return ingredients
+            .Select(ri => ri.Category)
+            .Distinct()
+            .ToList();
     }
     
     //TODO:
