@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SchijfVanVijf.TempSearchCode"
+             Title="TempSearchCode">
+    <Grid Padding="20" RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Search Button -->
+        <Button Grid.Row="0"
+            Text="Search Recipes"
+            Command="{Binding SearchCommand}"
+            IsEnabled="{Binding IsNotLoading}"
+            HeightRequest="50"
+            FontSize="18"
+            BackgroundColor="{StaticResource Primary}"
+            TextColor="White" />
+        <!-- Status Message -->
+        <Label Grid.Row="1"
+           Text="{Binding StatusMessage}"
+           FontSize="16"
+           HorizontalOptions="Center"
+           TextColor="{StaticResource Secondary}" />
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator Grid.Row="2"
+                      IsRunning="{Binding IsLoading}"
+                      IsVisible="{Binding IsLoading}"
+                      Color="{StaticResource Primary}"
+                      VerticalOptions="Start"
+                      Margin="0,20,0,0" />
+
+        <!-- Results List -->
+        <Grid Grid.Row="2" 
+  RowDefinitions="Auto, *" 
+  IsVisible="{Binding HasResults}">
+
+            <Label Grid.Row="0" 
+       Text="Recipes:"
+       FontSize="20"
+       FontAttributes="Bold"
+       Margin="0,0,0,10" />
+            <!--er zaten hier twee manieren van scrollen heb er eentje weggehaald zodat het scrollen goed gaat!-->
+            <CollectionView Grid.Row="1" 
+                ItemsSource="{Binding RecipeNames}"
+                Margin="0,0,0,80">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="15"
+                   Margin="0,5"
+                   BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#2C2C2C}"
+                   CornerRadius="8"
+                   HasShadow="False">
+                            <Label Text="{Binding}"
+                       FontSize="16"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+
+    </Grid>
+</ContentPage>
