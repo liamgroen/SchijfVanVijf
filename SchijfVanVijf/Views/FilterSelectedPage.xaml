@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:SchijfVanVijf.Models"
-             xmlns:viewmodel="clr-namespace:SchijfVanVijf.ViewModel"
              x:Class="SchijfVanVijf.Views.FilterSelectedPage"
              Title="{Binding Category}">
 
-    <!-- TODO: Request ingredient of specific category to display-->
-    <!-- Creates the layout for the ingredient checklist-->
     <Grid BackgroundColor="White"
           RowDefinitions="*,Auto">
-        <!-- Links the checkboxes to the OnCheckedChanged event-->
-        <CheckBox x:Name="cb1"
-                  CheckedChanged="OnCheckedChanged"  
-                  Grid.Row="0"
-                  Color="Black"/>
-        <Label Text="Onion"
-                   TextColor="Black"
-                   HeightRequest="20"
-               Grid.Row="0"
-               Margin="30"/>
-        <!-- Links the OKbutton to the OkButtonClick event-->
+
+        <ScrollView>
+            <VerticalStackLayout
+                Padding="20"
+                BindableLayout.ItemsSource="{Binding IngredientList}">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Spacing="10">
+                            <CheckBox
+                                CheckedChanged="OnCheckedChanged"
+                                Color="Black" />
+
+                            <Label
+                                Text="{Binding}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
         <Button Text="OK"
-                Grid.Row="5"
+                Grid.Row="1"
                 HeightRequest="50"
                 TextColor="Black"
                 BorderColor="Black"
                 BorderWidth="1"
                 BackgroundColor="{StaticResource Primary}"
-                Margin="20,20"
-                Clicked = "OkButtonClick"/>
+                Margin="20"
+                Clicked="OkButtonClick"/>
     </Grid>
 
 </ContentPage>

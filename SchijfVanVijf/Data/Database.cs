@@ -7,61 +7,84 @@ namespace SchijfVanVijf.Data;
 public class Database
 {
     //create database object used for interacting with the SQLite DB
-    private SQLiteAsyncConnection database; // asyncConnetie met de database
+    private SQLiteAsyncConnection _db; // asyncConnetie met de database
     private DatabaseSeeder seeder;// stopt bij het opstarten de data in de database
+    private bool _initialized;
+    private readonly SemaphoreSlim _initLock = new(1, 1);
 
-    public async Task Init() // checkt of de databse al bestaar
+    public Database()
     {
-
-        if (File.Exists(Constants.DatabasePath)) // verwijderd het locale bestand als het bestaat zodat de nieuwe tables kunnen worden ingevoerd TEMP
-        {
-            File.Delete(Constants.DatabasePath);
-        }
-
-
-        database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags); // maak nieuwe connectie met SQLiteAsyncConnetie 
-        await database.ExecuteAsync("PRAGMA foreign_keys = ON;"); // zet het gebruik van foreign keys aan en moet direct gebeuren
-        await CreateTablesAsync(); // zorgt dat talleben bestaan
-        await SeedDatabaseAsync(); // vult de tabellen met data
+        _db = new SQLiteAsyncConnection(
+            Constants.DatabasePath,
+            Constants.Flags
+        );
     }
 
-    private async Task CreateTablesAsync() // maakt tabellen aan voor database
+    /// <summary>
+    /// Safe to call multiple times â€“ only runs once.
+    /// </summary>
+    public async Task Init()
     {
+        if (_initialized)
+            return;
 
-        await database.ExecuteAsync(@"CREATE TABLE ""Ingredient"" (
-	                                ""Ingredient_Id""	INTEGER,
-	                                ""Name""	TEXT,
-                                    ""Category"" TEXT,
-                                    ""Allergies"" TEXT,
-	                                PRIMARY KEY(""Ingredient_Id"")
-                                    );"
-                                    );
-        await database.ExecuteAsync(@"CREATE TABLE ""Recipe"" (
-	                                ""Recipe_Id""	INTEGER,
-	                                ""Title""	TEXT,
-	                                ""Discription""	TEXT,
-	                                ""Instruction""	TEXT,
-	                                ""Preparation_Time""	INTEGER,
-	                                ""Cooking_Time""	INTEGER,
-	                                ""Servings""	INTEGER,
-	                                PRIMARY KEY(""Recipe_Id"")
-                                    );"
-                                    );
-        await database.ExecuteAsync(@"CREATE TABLE ""RecipeIngredient"" (
-                                    ""Recipe_Ingredient_Id""	INTEGER,
-	                                ""Recipe_Id""	INTEGER,
-	                                ""Ingredient_Id""	INTEGER,
-	                                ""Amount""	TEXT,
-	                                PRIMARY KEY(""Recipe_Id"",""Ingredient_Id""),
-	                                FOREIGN KEY(""Ingredient_Id"") REFERENCES ""Ingredient""(""Ingredient_Id""),
-	                                FOREIGN KEY(""Recipe_Id"") REFERENCES ""Recipe""(""Recipe_Id"")
-                                    );"
-                                    );
+        await _initLock.WaitAsync();
+        try
+        {
+            if (_initialized)
+                return;
+
+            await _db.ExecuteAsync("PRAGMA foreign_keys = ON;");
+
+            await CreateTables();
+            await SeedDatabase();
+
+            _initialized = true;
+        }
+        finally
+        {
+            _initLock.Release();
+        }
+    }
+
+    private async Task CreateTables()
+    {
+        await _db.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS Ingredient (
+                Ingredient_Id INTEGER PRIMARY KEY,
+                Name TEXT,
+                Category TEXT,
+                Allergies TEXT
+            );
+        """);
+
+        await _db.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS Recipe (
+                Recipe_Id INTEGER PRIMARY KEY,
+                Title TEXT,
+                Discription TEXT,
+                Instruction TEXT,
+                Preparation_Time INTEGER,
+                Cooking_Time INTEGER,
+                Servings INTEGER
+            );
+        """);
+
+        await _db.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS RecipeIngredient (
+                Recipe_Id INTEGER,
+                Ingredient_Id INTEGER,
+                Amount TEXT,
+                PRIMARY KEY (Recipe_Id, Ingredient_Id),
+                FOREIGN KEY (Recipe_Id) REFERENCES Recipe(Recipe_Id),
+                FOREIGN KEY (Ingredient_Id) REFERENCES Ingredient(Ingredient_Id)
+            );
+        """);
     }
     
-    private async Task SeedDatabaseAsync() // maakt een databaseSeeder
+    private async Task SeedDatabase() // maakt een databaseSeeder
     {
-        seeder = new DatabaseSeeder(database);
+        var seeder = new DatabaseSeeder(_db);
         await seeder.SeedAsync();
     }
     //TODO:
@@ -70,9 +93,10 @@ public class Database
     ///=========================
     public async Task<Ingredient> GetIngredientAsync(int Id)
     {
-        return await database.Table<Ingredient>() // vraagt ingrediënten tabel op
+        await Init();
+        return await _db.Table<Ingredient>() // vraagt ingrediï¿½nten tabel op
             .Where(i => i.Ingredient_Id == Id) // filtert op id
-            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingrediënt terug, of null
+            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingrediï¿½nt terug, of null
     }
     
     //TODO:
@@ -81,9 +105,10 @@ public class Database
     ///=========================
     public async Task<Recipe> GetRecipeAsync(int Id)
     {
-        return await database.Table<Recipe>() // vraagt ingrediënten tabel op
+        await Init();
+        return await _db.Table<Recipe>() // vraagt ingrediï¿½nten tabel op
             .Where(i => i.Recipe_Id == Id) // filtert op id
-            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingrediënt terug, of null
+            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingrediï¿½nt terug, of null
     }
 
     public async Task<List<Recipe>> GetRecipeListAsync(List<int> Ids)
@@ -93,7 +118,8 @@ public class Database
             return new List<Recipe>();  
         }
 
-        return await database.Table<Recipe>() // alle recepten ophalen waar het ID in de lijst zit
+        await Init();
+        return await _db.Table<Recipe>() // alle recepten ophalen waar het ID in de lijst zit
             .Where(i => Ids.Contains(i.Recipe_Id))
             .ToListAsync();
     }
@@ -114,9 +140,10 @@ public class Database
         { 
         return new List<Recipe>();
         }   
-
-        var recipeIds = (await database.Table<RecipeIngredient>() // zoekt in RecipeIngredient alle rijen waar IngredientId in de lijst zit
-            .Where(ri => ingredientIds.Contains(ri.Ingredient_Id)) // zorgt ervoor dat er alleen rijen opver blijven één van de ingredientID lijst
+        
+        await Init();
+        var recipeIds = (await _db.Table<RecipeIngredient>() // zoekt in RecipeIngredient alle rijen waar IngredientId in de lijst zit
+            .Where(ri => ingredientIds.Contains(ri.Ingredient_Id)) // zorgt ervoor dat er alleen rijen opver blijven ï¿½ï¿½n van de ingredientID lijst
             .ToListAsync())
             .Select(ri => ri.Recipe_Id) // selecteer uit de gevonden koppelling alleen de RecipeId
             .Distinct() // Verwijderd de dubbele RecipeId
@@ -125,4 +152,21 @@ public class Database
         return await GetRecipeListAsync(recipeIds); // Haal de volledige Recipe-objecten op die horen bij het gevonden RecipeId
     }
 
+    // Returns a list of ingredients that belong to a category
+    public async Task<List<string>> GetIngredientsForCategory(string category)
+    {
+        if (category == null)
+        {
+            return new List<string>();
+        }
+
+        await Init();
+        var ingredientList = (await _db.Table<Ingredient>()
+            .Where(ri => ri.Category == category)
+            .ToListAsync())
+            .Select(ri => ri.Name)
+            .ToList();
+
+        return ingredientList;
+    }
 }
