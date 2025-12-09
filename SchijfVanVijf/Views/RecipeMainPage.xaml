@@ -18,7 +18,7 @@
                         <Button
                             Text="{Binding RecipeName}"
                             Clicked="OnButtonClick"
-                            HorizontalOptions="Fill"
+                            HorizontalOptions="Center"
                             FontSize="Large"
                             BackgroundColor="Green"
                             TextColor="Black"

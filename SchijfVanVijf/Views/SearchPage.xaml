@@ -41,7 +41,7 @@
                                    PlaceholderColor="White"
                                    BackgroundColor="Transparent"
                                    FontFamily="OpenSansRegular">
-                                    <Entry.Triggers>
+                                    <Entry.Triggers> <!-- this is so the Add ingredients here placeholder disappears when you click on the entry-->
                                     <Trigger TargetType="Entry" Property="IsFocused" Value="True">
                                     <Setter Property="PlaceholderColor" Value="Transparent"/>
                                     </Trigger>
