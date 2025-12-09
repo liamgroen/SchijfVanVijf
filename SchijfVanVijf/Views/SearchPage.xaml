@@ -35,7 +35,7 @@
                                 Margin="0,0,0,12"
                                 HeightRequest="55">
 
-                                <Entry Text="{Binding Value}" 
+                                <Entry Text="{Binding Name}" 
                                    TextColor="Black"
                                    Placeholder="Add the ingredients you have!"
                                    PlaceholderColor="White"

@@ -101,6 +101,19 @@ public class Database
     }
 
 
+    public async Task<List<int>> GetIdsForNames(List<string> names)
+    {
+        await Init();
+        var ingredients = await _db.Table<Ingredient>()
+                                    .Where(i => names.Contains(i.Name))
+                                    .ToListAsync();
+        return ingredients
+            .Distinct()
+            .Select(i => i.Ingredient_Id)
+            .ToList();
+    }
+
+
     // returns a list of all ingredient categories
     public async Task<List<string>> GetAllCategories()
     {

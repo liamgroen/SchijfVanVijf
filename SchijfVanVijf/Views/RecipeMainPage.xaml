@@ -16,7 +16,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Button
-                            Text="{Binding RecipeName}"
+                            Text="{Binding Title}"
                             Clicked="OnButtonClick"
                             HorizontalOptions="Center"
                             FontSize="Large"
