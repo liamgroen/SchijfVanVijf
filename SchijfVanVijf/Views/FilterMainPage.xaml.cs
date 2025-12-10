@@ -23,7 +23,7 @@ public partial class FilterMainPage : ContentPage
     }
 
 
-    // add all food categories to the observablecollection
+    //Add all food categories to the observablecollection
     private async void LoadCategoriesAsync()
     {
         var categories = await _database.GetAllCategories();
