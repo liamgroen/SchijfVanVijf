@@ -21,7 +21,12 @@ public class DatabaseSeeder
             if (await database.Table<Recipe>().CountAsync() > 0) // dit zorgt ervoor dat er niet dubbel geseed wordt, nu gebeurd dit altijd want bestand wordtt verwijderd
             {
                 Debug.WriteLine("Seeden is al gebeurd en wordt overgeslagen");
+                if (File.Exists(Constants.DatabasePath)) // verwijderd het locale bestand als het bestaat zodat de nieuwe tables kunnen worden ingevoerd TEMP 
+                    File.Delete(Constants.DatabasePath); // temp
+                await ExecuteSqlAsync("SQLite_Queries_database.txt"); //temp
                 return;
+
+
             }
 
             Debug.WriteLine("Begint met seeden SQLite Queries");
