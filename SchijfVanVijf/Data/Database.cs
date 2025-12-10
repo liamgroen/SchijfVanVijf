@@ -2,6 +2,7 @@ using SQLite;
 using System.Linq;
 using SchijfVanVijf.Models;
 using System.ComponentModel;
+using AndroidX.Core.AccessibilityService;
 
 namespace SchijfVanVijf.Data;
 
@@ -95,7 +96,7 @@ public class Database
     public async Task<Ingredient> GetIngredientAsync(int Id)
     {
         await Init();
-        return await _db.Table<Ingredient>() // vraagt ingredi�nten tabel op
+        return await _db.Table<Ingredient>() // vraagt ingredienten tabel op
             .Where(i => i.Ingredient_Id == Id) // filtert op id
             .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredi�nt terug, of null
     }
@@ -148,7 +149,7 @@ public class Database
     public async Task<Recipe> GetRecipeAsync(int Id)
     {
         await Init();
-        return await _db.Table<Recipe>() // vraagt ingredi�nten tabel op
+        return await _db.Table<Recipe>() // vraagt ingredienten tabel op
             .Where(i => i.Recipe_Id == Id) // filtert op id
             .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredi�nt terug, of null
     }
