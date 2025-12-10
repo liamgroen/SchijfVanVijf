@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>SchijfVanVijf</ApplicationTitle>
+		<ApplicationTitle>Schijf Van Vijf</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.schijfvanvijf</ApplicationId>
@@ -40,7 +40,6 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -63,6 +62,14 @@
 	  <MauiCss Remove="Resources\NewFolder\**" />
 	  <MauiXaml Remove="Resources\NewFolder\**" />
 	  <None Remove="Resources\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 
 
