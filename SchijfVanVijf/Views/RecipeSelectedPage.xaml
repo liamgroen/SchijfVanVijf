@@ -26,8 +26,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Text="{Binding Recipe}"
+            Text="{Binding Title}"
             TextColor="Black"
             FontSize="Header"
             FontAutoScalingEnabled="True"
@@ -89,6 +88,17 @@
                     </Label.FormattedText>
                     <!-- TODO: Bind the ingredients to the label-->
                 </Label>
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Ingredients}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label
+                            Text="{Binding Name}"
+                            HorizontalOptions="Center"
+                            TextColor="Black">
+                        </Label>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
             </StackLayout>
         </ScrollView>
         <ScrollView x:Name="scrollView2"
@@ -106,7 +116,9 @@
                             <Span Text="Instructions" TextColor ="Black" FontAttributes="Bold"/>
                         </FormattedString>
                     </Label.FormattedText>
-                    <!-- TODO: Bind the instructions to the label-->
+                </Label>
+                <Label
+                    Text="{Binding Recipe.Discription}">
                 </Label>
             </StackLayout>
         </ScrollView>

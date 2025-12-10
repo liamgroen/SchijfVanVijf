@@ -1,42 +1,50 @@
 using System.Collections.ObjectModel;
-
+using SchijfVanVijf.Data;
+using SchijfVanVijf.Models;
 namespace SchijfVanVijf.Views;
 
 public partial class RecipeMainPage : ContentPage
 {
     //Creates a observableCollection for the matching recipes
-    public ObservableCollection<RecipeItems> RecipeList { get; set; } = new ObservableCollection<RecipeItems>();
-    public class RecipeItems
-    {
-        public string RecipeName {get; set;}
-    }
-    public RecipeMainPage()
+    public ObservableCollection<Recipe> RecipeList { get; set; } = new();
+
+    private readonly Database _database;
+    private List<int> ingredientsInHouse;
+   
+
+    public RecipeMainPage(List<int> ingredientIds)
 	{
 		InitializeComponent();
         BindingContext = this;
-        //Adds a few recipes to the recipelist for testing
-        RecipeList.Add(new RecipeItems { RecipeName = "Hamburger" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Fish and chips" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Tomato soup" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Sushi" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Pancakes" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Ramen" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Spaghetti" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Chicken wings" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Scones" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Brownies" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Shepherd's pie" });
-        RecipeList.Add(new RecipeItems { RecipeName = "Spareribs" });
+        _database = IPlatformApplication.Current.Services.GetRequiredService<Database>();
+        ingredientsInHouse = ingredientIds;
 
+        LoadRecipesAsync();
     }
+
+
+    private async void LoadRecipesAsync()
+    {
+        List<Recipe> recipes = await _database.GetRecipesContainingAnyAsync(ingredientsInHouse);
+        foreach (Recipe recipe in recipes)
+        {
+            RecipeList.Add(recipe);
+        }
+    }
+
     //Checks the text of the button that the user has pressed and hands this to the newly created recipe selected page
     private async void OnButtonClick(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        if (button == null) return;
+        if (sender is not Button button)
+        {
+            return;
+        }
 
-        string text = button.Text;
+        if (button.CommandParameter is not Recipe recipe)
+        {
+            return;
+        }
 
-        await Navigation.PushAsync(page: new Views.RecipeSelectedPage(text));
+        await Navigation.PushAsync(page: new Views.RecipeSelectedPage(recipe));
     }
 }

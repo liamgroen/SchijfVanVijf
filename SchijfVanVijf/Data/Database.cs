@@ -101,6 +101,35 @@ public class Database
     }
 
 
+    // return a list of Ingredient for a recipeId
+    public async Task<List<Ingredient>> GetIngredientListForRecipe(int recipeId)
+    {
+        await Init();
+        var recipeIngredientsIds = (await _db.Table<RecipeIngredient>()
+            .Where(i => i.Recipe_Id == recipeId)
+            .ToListAsync())
+            .Select(i => i.Ingredient_Id)
+            .ToList();
+        
+        return await _db.Table<Ingredient>()
+            .Where(i => recipeIngredientsIds.Contains(i.Ingredient_Id))
+            .ToListAsync();
+    }
+
+
+    public async Task<List<int>> GetIngredientIdsForNames(List<string> names)
+    {
+        await Init();
+        var ingredients = await _db.Table<Ingredient>()
+                                    .Where(i => names.Contains(i.Name))
+                                    .ToListAsync();
+        return ingredients
+            .Distinct()
+            .Select(i => i.Ingredient_Id)
+            .ToList();
+    }
+
+
     // returns a list of all ingredient categories
     public async Task<List<string>> GetAllCategories()
     {
