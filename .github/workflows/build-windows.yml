@@ -1,12 +1,10 @@
 name: Build Windows Executable
-
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:  # Allows manual trigger
-
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -21,10 +19,10 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Install .NET MAUI workload
-      run: dotnet workload install maui
+      run: dotnet workload install maui-windows --ignore-failed-sources
       
-    - name: Restore dependencies
-      run: dotnet restore SchijfVanVijf/SchijfVanVijf.csproj
+    - name: Restore dependencies for Windows only
+      run: dotnet restore SchijfVanVijf/SchijfVanVijf.csproj -f net8.0-windows10.0.19041.0
       
     - name: Build and Publish Windows App (Unpackaged)
       run: |
@@ -35,7 +33,9 @@ jobs:
           -p:WindowsPackageType=None `
           -p:WindowsAppSDKSelfContained=true `
           -p:SelfContained=true `
-          -p:PublishSingleFile=false `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          --no-restore `
           -o ./publish
       
     - name: Create distribution package
