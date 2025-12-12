@@ -35,7 +35,6 @@ jobs:
           -p:SelfContained=true `
           -p:PublishSingleFile=true `
           -p:IncludeNativeLibrariesForSelfExtract=true `
-          --no-restore `
           -o ./publish
       
     - name: Create distribution package
