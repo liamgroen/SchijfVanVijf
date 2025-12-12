@@ -1,32 +1,46 @@
-name: Build MAUI Windows
-
+name: Build Windows Executable
 on:
-  workflow_dispatch:
   push:
-    branches: [ "main" ]
-
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allows manual trigger
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
-
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
+      
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-
-    - name: Install MAUI workload
-      run: dotnet workload install maui
-
-    - name: Publish Windows Executable
-      run: dotnet publish -f net8.0-windows10.0.19041.0 -c Release -p:PublishSingleFile=true -p:SelfContained=true -p:IncludeNativeLibrariesForSelfExtract=true
-
-    - name: Upload Artifact (Windows Build)
+        dotnet-version: '8.0.x'
+        
+    - name: Install .NET MAUI workload
+      run: dotnet workload install maui-windows --ignore-failed-sources
+      
+    - name: Build and Publish Windows App (Unpackaged)
+      run: |
+        dotnet publish SchijfVanVijf/SchijfVanVijf.csproj `
+          -f net8.0-windows10.0.19041.0 `
+          -c Release `
+          -p:RuntimeIdentifierOverride=win10-x64 `
+          -p:WindowsPackageType=None `
+          -p:WindowsAppSDKSelfContained=true `
+          -p:SelfContained=true `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          -o ./publish
+      
+    - name: Create distribution package
+      run: |
+        Compress-Archive -Path ./publish/* -DestinationPath SchijfVanVijf-Windows.zip
+        
+    - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: windows-build
-        path: |
-          **/bin/Release/net8.0-windows*/publish/
+        name: SchijfVanVijf-Windows
+        path: SchijfVanVijf-Windows.zip
+        retention-days: 30
