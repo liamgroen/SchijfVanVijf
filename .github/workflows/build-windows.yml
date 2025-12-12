@@ -21,9 +21,6 @@ jobs:
     - name: Install .NET MAUI workload
       run: dotnet workload install maui-windows --ignore-failed-sources
       
-    - name: Restore dependencies
-      run: dotnet restore SchijfVanVijf/SchijfVanVijf.csproj
-      
     - name: Build and Publish Windows App (Unpackaged)
       run: |
         dotnet publish SchijfVanVijf/SchijfVanVijf.csproj `
@@ -35,7 +32,6 @@ jobs:
           -p:SelfContained=true `
           -p:PublishSingleFile=true `
           -p:IncludeNativeLibrariesForSelfExtract=true `
-          --no-restore `
           -o ./publish
       
     - name: Create distribution package
