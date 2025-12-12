@@ -26,7 +26,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="0"
-            Text="{Binding Title}"
+            Text="{Binding Recipe.Title}"
             TextColor="Black"
             FontSize="Header"
             FontAutoScalingEnabled="True"
@@ -76,9 +76,9 @@
                     Grid.Column="0"
                     BackgroundColor="LightGreen">
             <!--Scrolled="OnScrollViewScrolled"> -->
-            <StackLayout>
+            <StackLayout
+                Margin="10">
                 <Label
-                    Margin="10"
                     HorizontalTextAlignment="Center"
                     FontSize="Medium">
                     <Label.FormattedText>
@@ -92,7 +92,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Label
-                            Text="{Binding Name}"
+                            Text="{Binding}"
                             HorizontalOptions="Center"
                             TextColor="Black">
                         </Label>
@@ -106,9 +106,9 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="4"
                     BackgroundColor="LightGreen">
-            <StackLayout>
+            <StackLayout 
+                Margin="10">
                 <Label
-                    Margin="10"
                     HorizontalTextAlignment="Center"
                     FontSize="Medium">
                     <Label.FormattedText>
@@ -118,7 +118,8 @@
                     </Label.FormattedText>
                 </Label>
                 <Label
-                    Text="{Binding Recipe.Discription}">
+                    Text="{Binding Recipe.Discription}"
+                    TextColor="Black">
                 </Label>
             </StackLayout>
         </ScrollView>

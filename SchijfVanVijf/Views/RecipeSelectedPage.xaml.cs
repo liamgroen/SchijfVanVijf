@@ -11,17 +11,5 @@ public partial class RecipeSelectedPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new ViewModel.RecipeSelectedPageViewModel(clickedRecipe);
-
-
 	}
-
-
-
-
-
-	public async void OnScrollViewScrolled (Object sender, ScrolledEventArgs e)
-	{   
-    }
-
-
 }
