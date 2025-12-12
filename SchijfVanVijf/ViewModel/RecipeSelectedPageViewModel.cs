@@ -12,8 +12,23 @@ public class RecipeSelectedPageViewModel : INotifyPropertyChanged
     public ICommand LessCommand { get; }
     public ICommand MoreCommand { get; }
     public Recipe Recipe { get; set; }
-    public ObservableCollection<Ingredient> Ingredients { get; set; } = new();
+    public ObservableCollection<string> Ingredients { get; set; } = new();
     private readonly Database _database;
+    private string _ingredienttext;
+    public string ingredienttext
+    {
+        get => _ingredienttext;
+        set
+        {
+            if (_ingredienttext != value)
+            {
+                _ingredienttext = value;
+                OnPropertyChanged(nameof(ingredienttext));
+            }
+        }
+    }
+    private List<Ingredient> ingredients;
+    private List<RecipeIngredient> recipeingredient;
     private double _servingsAmount;
     public double servingsAmount
     {
@@ -43,24 +58,22 @@ public class RecipeSelectedPageViewModel : INotifyPropertyChanged
     }
     public RecipeSelectedPageViewModel(Recipe recipe)
     {
-        //TODO: Split view into view and viewmodel
-
         Recipe = recipe;
         servingsAmount = 4;
         _servingsText = $"{servingsAmount} servings";
         LessCommand = new Command(LessServings);
         MoreCommand = new Command(MoreServings);
         _database = IPlatformApplication.Current.Services.GetRequiredService<Database>();
-        LoadIngredientsAsync();
+        LoadListsAsync();
     }
 
     protected void OnPropertyChanged(string propertyName) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     
     //TODO: Write OnScrollViewScrolled - Used to scroll through longer recipes
-    public async Task OnScrollViewScrolled(object sender, ScrolledEventArgs e)
-    {
-    }
+    //public async Task OnScrollViewScrolled(object sender, ScrolledEventArgs e)
+    //{
+    //}
 
     public async void LessServings()
     {
@@ -70,6 +83,7 @@ public class RecipeSelectedPageViewModel : INotifyPropertyChanged
             servingsAmount = 0.5;
         }
         servingsText = $"{servingsAmount} servings";
+        DisplayLists();
     }
 
     public async void MoreServings()
@@ -80,14 +94,32 @@ public class RecipeSelectedPageViewModel : INotifyPropertyChanged
             servingsAmount = 1;
         }
         servingsText = $"{servingsAmount} servings";
+        DisplayLists();
     }
 
-    public async void LoadIngredientsAsync()
+    //Loads the lists from the database
+    public async void LoadListsAsync()
     {
-        var ingredients = await _database.GetIngredientListForRecipe(Recipe.Recipe_Id);
+        ingredients = await _database.GetIngredientListForRecipe(Recipe.Recipe_Id); //Gets all of the ingredient items
+        recipeingredient = await _database.GetRecipeIngredientList(Recipe.Recipe_Id); //Gets the corresponding recipeingredient items
+        DisplayLists();
+    }
+
+    //Displays the ingredients with their amount on a label in the Recipe Selected Page
+    public async void DisplayLists()
+    {
+        Ingredients.Clear(); //Clears out previous items
         foreach (Ingredient ingredient in ingredients)
         {
-            Ingredients.Add(ingredient);
+            foreach (RecipeIngredient ri in recipeingredient)
+            {
+                if (ingredient.Ingredient_Id == ri.Ingredient_Id) //if the ingredient ID's are the same, the amount of an ingredient is adjused based on the serving amount
+                {
+                    //TODO: Fix long numbers and add measurements
+                    ingredienttext = $"{(ri.Amount) * (servingsAmount / Recipe.Servings)} {ingredient.Name}";
+                    Ingredients.Add(ingredienttext);
+                }
+            }
         }
     }
 }

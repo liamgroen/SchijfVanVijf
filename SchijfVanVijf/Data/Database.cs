@@ -2,7 +2,7 @@ using SQLite;
 using System.Linq;
 using SchijfVanVijf.Models;
 using System.ComponentModel;
-using AndroidX.Core.AccessibilityService;
+//using AndroidX.Core.AccessibilityService;
 
 namespace SchijfVanVijf.Data;
 
@@ -98,7 +98,7 @@ public class Database
         await Init();
         return await _db.Table<Ingredient>() // vraagt ingredienten tabel op
             .Where(i => i.Ingredient_Id == Id) // filtert op id
-            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredi�nt terug, of null
+            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredient terug, of null
     }
 
 
@@ -151,7 +151,7 @@ public class Database
         await Init();
         return await _db.Table<Recipe>() // vraagt ingredienten tabel op
             .Where(i => i.Recipe_Id == Id) // filtert op id
-            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredi�nt terug, of null
+            .FirstOrDefaultAsync(); // geeft het eerstvolgende ingredient terug, of null
     }
 
     public async Task<List<Recipe>> GetRecipeListAsync(List<int> Ids)
@@ -172,7 +172,20 @@ public class Database
     ///=========================
     /// RecipeIngredients CRUD 
     ///=========================
+    public async Task<List<RecipeIngredient>> GetRecipeIngredientList(int recipeId)
+    {
+        if (recipeId == 0) // If variable is empty, create new list
+        {
+            return new List<RecipeIngredient>();
+        }
 
+        await Init();
+        var recipeingredientlist = (await _db.Table<RecipeIngredient>() // Get all recipeingredient items with the same recipeId and add them to the list
+        .Where(ri => ri.Recipe_Id == recipeId)
+        .ToListAsync());
+
+        return recipeingredientlist;
+        }
 
     // ============================================
     // RECIPE SEARCH / FILTER
