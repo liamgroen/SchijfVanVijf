@@ -50,3 +50,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: SchijfVanVijf-Windows
+        path: SchijfVanVijf-Windows.zip
+        retention-days: 30
